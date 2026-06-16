@@ -1,0 +1,15 @@
+{
+  "chatfilter.title": "Chat Message Filter",
+  "chatfilter.enable": "Enable Filter",
+  "chatfilter.case_sensitive": "Case Sensitive",
+  "chatfilter.enabled": "ON",
+  "chatfilter.disabled": "OFF",
+  "chatfilter.add_word": "Add Word",
+  "chatfilter.remove": "Remove",
+  "chatfilter.clear_all": "Clear All",
+  "chatfilter.save": "Save",
+  "chatfilter.word_list": "Filter Words",
+  "chatfilter.enter_word": "Enter word...",
+  "chatfilter.no_words": "No words configured",
+  "chatfilter.saved": "Configuration saved!"
+}

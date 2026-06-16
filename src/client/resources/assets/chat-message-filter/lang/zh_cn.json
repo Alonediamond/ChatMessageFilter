@@ -1,0 +1,15 @@
+{
+  "chatfilter.title": "聊天消息过滤器",
+  "chatfilter.enable": "启用过滤",
+  "chatfilter.case_sensitive": "区分大小写",
+  "chatfilter.enabled": "开",
+  "chatfilter.disabled": "关",
+  "chatfilter.add_word": "添加词语",
+  "chatfilter.remove": "删除",
+  "chatfilter.clear_all": "清空全部",
+  "chatfilter.save": "保存",
+  "chatfilter.word_list": "过滤词列表",
+  "chatfilter.enter_word": "输入词语...",
+  "chatfilter.no_words": "未配置过滤词",
+  "chatfilter.saved": "配置已保存！"
+}
