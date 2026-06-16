@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "chat-message-filter",
+	"version": "${version}",
+	"name": "Chat Message Filter",
+	"description": "A client-side chat message filter that removes unwanted words from the chat HUD.",
+	"authors": [
+		"Alonediamond"
+	],
+	"contact": {
+		"homepage": "https://github.com/Alonediamond/ChatMessageFilter",
+		"sources": "https://github.com/Alonediamond/ChatMessageFilter"
+	},
+	"license": "MIT",
+	"icon": "assets/chat-message-filter/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"com.alonediamond.ChatMessageFilter"
+		],
+		"client": [
+			"com.alonediamond.client.ChatMessageFilterClient"
+		],
+		"modmenu": [
+			"com.alonediamond.client.screen.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"chat-message-filter.mixins.json",
+		{
+			"config": "chat-message-filter.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}
