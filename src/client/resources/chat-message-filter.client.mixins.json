@@ -3,7 +3,8 @@
     "package": "com.alonediamond.client.mixin",
     "compatibilityLevel": "JAVA_25",
     "client": [
-        "ChatComponentMixin"
+        "ChatComponentMixin",
+        "ChatListenerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

@@ -58,17 +58,13 @@ public class ChatFilterManager {
 
     private String applyFilters(String text) {
         boolean caseSensitive = ConfigManager.getInstance().getConfig().caseSensitive;
-        System.out.println("Original message: " + text);
         for (String word : filterWords) {
             if (caseSensitive) {
                 text = text.replace(word, "");
-                System.out.println("Modified word: " + word);
-                System.out.println("Modified text: " + text);
             } else {
                 text = caseInsensitiveReplace(text, word);
             }
         }
-        System.out.println("Final message: " + text);
         return text;
     }
 
