@@ -6,6 +6,7 @@ import com.alonediamond.client.filter.ChatFilterManager;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -56,12 +57,34 @@ public class FilterConfigScreen extends Screen {
             btn -> { caseSensitive = !caseSensitive; rebuildWidgets(); })
             .bounds(centerX - 100, 60, 200, 20).build());
 
+        // Scroll up button
+        if (scrollOffset > 0) {
+            addRenderableWidget(Button.builder(Component.literal("▲"),
+                btn -> { scrollOffset--; rebuildWidgets(); })
+                .bounds(centerX + 95, LIST_START_Y, 20, 20).build());
+        }
+
+        // Word list with remove buttons
         for (int i = scrollOffset; i < Math.min(words.size(), scrollOffset + maxVisible); i++) {
             final int idx = i;
             int y = LIST_START_Y + (i - scrollOffset) * ENTRY_HEIGHT;
+
+            StringWidget label = new StringWidget(0, 0, 160, 20,
+                Component.literal(words.get(i)), this.font);
+            label.setX(centerX - 90);
+            label.setY(y);
+            addRenderableWidget(label);
+
             addRenderableWidget(Button.builder(Component.literal("✕"),
                 btn -> { words.remove(idx); rebuildWidgets(); })
                 .bounds(centerX + 70, y, 20, 20).build());
+        }
+
+        // Scroll down button
+        if (scrollOffset < maxScroll) {
+            addRenderableWidget(Button.builder(Component.literal("▼"),
+                btn -> { scrollOffset++; rebuildWidgets(); })
+                .bounds(centerX + 95, LIST_START_Y + (Math.min(words.size(), scrollOffset + maxVisible) - scrollOffset) * ENTRY_HEIGHT - 20, 20, 20).build());
         }
 
         addWordField = new EditBox(this.font, centerX - 100, LIST_START_Y + LIST_HEIGHT + 5, 140, 20,
@@ -102,14 +125,7 @@ public class FilterConfigScreen extends Screen {
     @Override
     public void extractRenderState(GuiGraphicsExtractor extractor, int mouseX, int mouseY, float delta) {
         super.extractRenderState(extractor, mouseX, mouseY, delta);
-
         extractor.centeredText(this.font, this.title, this.width / 2, 15, 0xFFFFFF);
-
-        int maxVisible = LIST_HEIGHT / ENTRY_HEIGHT;
-        for (int i = scrollOffset; i < Math.min(words.size(), scrollOffset + maxVisible); i++) {
-            int y = LIST_START_Y + (i - scrollOffset) * ENTRY_HEIGHT + 6;
-            extractor.text(this.font, words.get(i), this.width / 2 - 90, y, 0xFFFFFF);
-        }
 
         if (words.isEmpty()) {
             extractor.centeredText(this.font, Component.translatable("chatfilter.no_words"),
@@ -124,8 +140,10 @@ public class FilterConfigScreen extends Screen {
         int newOffset = scrollOffset - (int) scrollY;
         if (newOffset < 0) newOffset = 0;
         if (newOffset > maxScroll) newOffset = maxScroll;
-        scrollOffset = newOffset;
-        rebuildWidgets();
+        if (newOffset != scrollOffset) {
+            scrollOffset = newOffset;
+            rebuildWidgets();
+        }
         return true;
     }
 
