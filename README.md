@@ -2,6 +2,8 @@
 
 A client-side Fabric mod for Minecraft that filters chat messages by removing unwanted words before they appear in the chat HUD.
 
+> This is the **Minecraft 26.1.2** version. For Minecraft 1.21.11, see the [1.21.11 branch](https://github.com/Alonediamond/ChatMessageFilter/tree/1.21.11).
+
 ## Features
 
 - **Silent word removal** — blocked words are deleted from chat messages (not replaced with stars or other characters)
@@ -101,6 +103,13 @@ The mod injects into both `ChatListener` and `ChatComponent` via Mixin. When a m
 4. Returns a new `MutableComponent` with filtered text, preserving all original styling
 
 The filtered message is re-submitted through the same method. Since removed words cannot re-create blocked words (deletion is idempotent), the second pass finds no matches and the message displays normally.
+
+## Versions
+
+| Minecraft | Branch / Tag                                                        |
+|-----------|---------------------------------------------------------------------|
+| 26.1.2    | [master](https://github.com/Alonediamond/ChatMessageFilter)         |
+| 1.21.11   | [1.21.11](https://github.com/Alonediamond/ChatMessageFilter/tree/1.21.11) |
 
 ## Building from Source
 
